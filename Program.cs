@@ -1,12 +1,17 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using System;
+using CyberBot;
 
-class Program
+internal class NewBaseType
 {
     static void Main(string[] args)
     {
         Chatbot bot = new Chatbot();
-        bot.start();
+        bot.Start();
     }
+}
+
+class Program : NewBaseType
+{
 } 

@@ -1,84 +1,130 @@
- using System;
-using System.ComponentModel.Design;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using Microsoft.VisualBasic;
+// See https://aka.ms/new-console-template for more information
 
-public class Chatbot 
- {
-    private string userName;
+using System.Diagnostics;
 
-    public void start()
+namespace CyberBot
+{
+    public class NewBaseType
     {
-        ShowAsciiArt();
-        AssemblyKeyNameAttribute();
-        ChatLoop();
-    }
-private void ShowAsciiArt();
-{
-    console.ForegroundColor = 
-    ConsoleColor.Cyan;
-
-    console.WriteLine("====================================");
-              console.WriteLine("  CYBER SECURITY CHATBOT");
-
-    console.WriteLine("=====================================");
-                         
-    console.ResetColor();
-}
-
-private void AskName();
-{
-    Console.Write("Enter your name:  ");
-    userName = Console.ReadLine();
-    Console.WriteLine($"Hello {userName}, I am your Cybersecurity Assistant!\n");
-
-}
-private void ChatLoop()
-{
-    while (true)
-    {
-        Console.Write($"{userName}: ");
-        string input = 
-        Console.ReadLine().ToLower();
-
-        if (input,Contains("exit"))
+        public void Start()
         {
-            Console.WriteLine("Goodbye! Stay safe online.");
-            
-            break;
-
+            PlayGreeting(); // ADD AUDIO
+            ShowAsciiArt();
+            AskName();
+            ChatLoop();
         }
 
-        else if (input.Contains("how are you"))
+        private void AskName()
         {
-            Console.WriteLine("I'm functioning perfectly and ready to help you!");
+            throw new NotImplementedException();
         }
 
-        else if (input.Contains("purpose"))
+        private void ChatLoop()
         {
-            Console.WriteLine("My purpose is to help you stay safe online.");
+            throw new NotImplementedException();
         }
 
-        else if (input.Contains("password"))
+        private void ShowAsciiArt()
         {
-            Console.WriteLine("Use strong passwords with numbers, symbols, and avoid sharing them.");
+            throw new NotImplementedException();
         }
 
-        else if (input.Contains("phishing"))
+        private void PlayGreeting()
         {
-            Console.WriteLine("Be careful of suspicious emails asking for personal information.");
-        }
-
-        else if (input.Contains("Safe browsing"))
-        {
-            Console.WriteLine("Always check URLs and avoid clicking unkown links.");
-        }
-
-        else
-        {
-            Console.WriteLine("I didn't understand, please rephrase.");
+            throw new NotImplementedException();
         }
     }
+
+    public class Chatbot : NewBaseType
+    {
+        private string userName = "User";
+
+        public void Start()
+        {
+            ShowAsciiArt();
+            AskName();
+            ChatLoop();
+        }
+
+        private void ShowAsciiArt()
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("======================================");
+            Console.WriteLine("      CYBER SECURITY CHATBOT");
+            Console.WriteLine("======================================");
+            Console.ResetColor();
+        }
+
+        private void AskName()
+        {
+            Console.Write("Enter your name: ");
+            string input = Console.ReadLine();
+
+            if (!string.IsNullOrWhiteSpace(input))
+                userName = input;
+
+            Console.WriteLine($"Hello {userName}, I am your Cybersecurity Assistant!\n");
+        }
+
+        private void ChatLoop()
+        {
+            while (true)
+            {
+                Console.Write($"{userName}: ");
+                string input = Console.ReadLine()?.ToLower() ?? "";
+
+                if (input.Contains("exit"))
+                {
+                    Console.WriteLine("Goodbye! Stay safe online.");
+                    break;
+                }
+                else if (input.Contains("how are you"))
+                {
+                    Console.WriteLine("I'm functioning perfectly and ready to help you!");
+                }
+                else if (input.Contains("purpose"))
+                {
+                    Console.WriteLine("My purpose is to help you stay safe online.");
+                }
+                else if (input.Contains("password"))
+                {
+                    Console.WriteLine("Use strong passwords with numbers, symbols, and avoid sharing them.");
+                }
+                else if (input.Contains("phishing"))
+                {
+                    Console.WriteLine("Be careful of suspicious emails asking for personal information.");
+                }
+                else if (input.Contains("safe browsing"))
+                {
+                    Console.WriteLine("Always check URLs and avoid clicking unknown links.");
+                }
+
+                else if (input.Contains("virus"))
+                {
+                    Console.WriteLine("Install antivirus software and keep it updated.");
+                }
+                else if (input.Contains("vpn"))
+                {
+                    Console.WriteLine("A vpn helps protect your privacy online");
+                }
+                else
+                {
+                    Console.WriteLine("I didn’t understand, please rephrase.");
+                }
+
+               
+            }
+        }
+         
+                private void PlayGreeting()
+                {
+                    try{
+                        Process.Start("aplay", "sounds/welcome.wav");
+                    }
+                    catch
+                    {
+                        Console.WriteLine("(sound could not be played)");
+                    }
+                }
+    }
 }
- }

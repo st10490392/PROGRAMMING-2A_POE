@@ -1,0 +1,15 @@
+/home/gingercodephantom/CyberBot/bin/Debug/net10.0/CyberBot
+/home/gingercodephantom/CyberBot/bin/Debug/net10.0/CyberBot.deps.json
+/home/gingercodephantom/CyberBot/bin/Debug/net10.0/CyberBot.runtimeconfig.json
+/home/gingercodephantom/CyberBot/bin/Debug/net10.0/CyberBot.dll
+/home/gingercodephantom/CyberBot/bin/Debug/net10.0/CyberBot.pdb
+/home/gingercodephantom/CyberBot/obj/Debug/net10.0/CyberBot.GeneratedMSBuildEditorConfig.editorconfig
+/home/gingercodephantom/CyberBot/obj/Debug/net10.0/CyberBot.AssemblyInfoInputs.cache
+/home/gingercodephantom/CyberBot/obj/Debug/net10.0/CyberBot.AssemblyInfo.cs
+/home/gingercodephantom/CyberBot/obj/Debug/net10.0/CyberBot.csproj.CoreCompileInputs.cache
+/home/gingercodephantom/CyberBot/obj/Debug/net10.0/CyberBot.sourcelink.json
+/home/gingercodephantom/CyberBot/obj/Debug/net10.0/CyberBot.dll
+/home/gingercodephantom/CyberBot/obj/Debug/net10.0/refint/CyberBot.dll
+/home/gingercodephantom/CyberBot/obj/Debug/net10.0/CyberBot.pdb
+/home/gingercodephantom/CyberBot/obj/Debug/net10.0/CyberBot.genruntimeconfig.cache
+/home/gingercodephantom/CyberBot/obj/Debug/net10.0/ref/CyberBot.dll
