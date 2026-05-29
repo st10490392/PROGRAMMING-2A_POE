@@ -1,18 +1,52 @@
-# Cybersecurity Chatbot (POE Part 1)
+# CyberBotGUI
 
-## Description
-This is a console-based chatbot built in C# that educates users about cybersecurity.
+## Project Overview
+
+CyberBotGUI is a cross-platform desktop cybersecurity awareness chatbot built with Avalonia UI on .NET 8. It provides interactive guidance on common security topics and responds to user sentiment, memory, and follow-up requests.
 
 ## Features
-- Voice greeting (.wav)
-- ASCII art display
-- User name interaction
-- Cybersecurity responses
-- Input validation
+
+- Keyword recognition for cybersecurity topics
+- Random topic-specific responses
+- Conversation flow with "tell me more" and "another tip"
+- Memory support for favorite topics
+- Sentiment detection for worried, frustrated, scared, confused, and excited messages
+- Enhanced Linux-compatible GUI using Avalonia
+
+## Supported Topics
+
+- Passwords
+- Phishing
+- Privacy
+- Malware
+- VPNs
+- Scams
+- Social engineering
 
 ## How to Run
-dotnet run
-can even run on vscode 
 
-## Author
-Ripfumelo Ngobeni
+1. Ensure .NET 8 SDK is installed.
+2. Restore packages:
+
+```bash
+dotnet restore CyberBotGUI.csproj
+```
+
+3. Build the project:
+
+```bash
+dotnet build CyberBotGUI.csproj
+```
+
+4. Run the app:
+
+```bash
+dotnet run --project CyberBotGUI.csproj
+```
+
+## Technologies Used
+
+- .NET 8
+- Avalonia UI 11
+- C#
+
