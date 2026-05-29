@@ -49,4 +49,3 @@ dotnet run --project CyberBotGUI.csproj
 - .NET 8
 - Avalonia UI 11
 - C#
-
