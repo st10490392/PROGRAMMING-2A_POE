@@ -1,19 +1,62 @@
-# CyberBotGUI
+# CyberBot
 
 ## Project Overview
 
-CyberBotGUI is a cross-platform desktop cybersecurity awareness chatbot built with Avalonia UI on .NET 8. It provides interactive guidance on common security topics and responds to user sentiment, memory, and follow-up requests.
+This repository includes two connected cybersecurity chatbot implementations:
 
-## Features
+- **Part 1:** `CyberBot` console chatbot
+- **Part 2:** `CyberBotGUI` Avalonia desktop chatbot
 
-- Keyword recognition for cybersecurity topics
+The console version is a legacy POE Part 1 implementation with voice greeting and ASCII art, while the GUI version is a newer desktop app with richer topic handling.
+
+## Part 1 — Console Chatbot
+
+### Features
+
+- Voice greeting support (WAV)
+- ASCII art startup display
+- User name interaction
+- Cybersecurity keyword responses
+- Input handling with exit support
+
+### Relevant files
+
+- `CyberBot.csproj`
+- `Chatbot.cs`
+
+### Run the console bot
+
+1. Ensure .NET 10 SDK is installed.
+2. Restore packages:
+
+```bash
+dotnet restore CyberBot.csproj
+```
+
+3. Build the project:
+
+```bash
+dotnet build CyberBot.csproj
+```
+
+4. Run the app:
+
+```bash
+dotnet run --project CyberBot.csproj
+```
+
+## Part 2 — Avalonia GUI Chatbot
+
+### Features
+
+- Cross-platform Avalonia desktop UI
+- Topic recognition for cybersecurity subjects
 - Random topic-specific responses
-- Conversation flow with "tell me more" and "another tip"
-- Memory support for favorite topics
-- Sentiment detection for worried, frustrated, scared, confused, and excited messages
-- Enhanced Linux-compatible GUI using Avalonia
+- Memory for favorite topics
+- Sentiment-aware responses for worried, frustrated, scared, confused, and excited messages
+- Follow-up flow: "tell me more" / "another tip"
 
-## Supported Topics
+### Supported topics
 
 - Passwords
 - Phishing
@@ -23,7 +66,16 @@ CyberBotGUI is a cross-platform desktop cybersecurity awareness chatbot built wi
 - Scams
 - Social engineering
 
-## How to Run
+### Relevant files
+
+- `CyberBotGUI.csproj`
+- `App.axaml`
+- `App.axaml.cs`
+- `MainWindow.axaml`
+- `MainWindow.axaml.cs`
+- `Services/ChatbotService.cs`
+
+### Run the GUI bot
 
 1. Ensure .NET 8 SDK is installed.
 2. Restore packages:
@@ -46,6 +98,6 @@ dotnet run --project CyberBotGUI.csproj
 
 ## Technologies Used
 
-- .NET 8
+- .NET 8 / .NET 10
 - Avalonia UI 11
 - C#
