@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/gingercodephantom/CyberBot/CyberBot.csproj": {}
+    "/home/gingercodephantom/PROGRAMMING-2A_POE/CyberBot.csproj": {}
   },
   "projects": {
-    "/home/gingercodephantom/CyberBot/CyberBot.csproj": {
+    "/home/gingercodephantom/PROGRAMMING-2A_POE/CyberBot.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/gingercodephantom/CyberBot/CyberBot.csproj",
+        "projectUniqueName": "/home/gingercodephantom/PROGRAMMING-2A_POE/CyberBot.csproj",
         "projectName": "CyberBot",
-        "projectPath": "/home/gingercodephantom/CyberBot/CyberBot.csproj",
+        "projectPath": "/home/gingercodephantom/PROGRAMMING-2A_POE/CyberBot.csproj",
         "packagesPath": "/home/gingercodephantom/.nuget/packages/",
-        "outputPath": "/home/gingercodephantom/CyberBot/obj/",
+        "outputPath": "/home/gingercodephantom/PROGRAMMING-2A_POE/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/gingercodephantom/.nuget/NuGet/NuGet.Config"
@@ -43,6 +43,20 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+          "dependencies": {
+            "Avalonia": {
+              "target": "Package",
+              "version": "[12.0.4, )"
+            },
+            "Avalonia.Desktop": {
+              "target": "Package",
+              "version": "[12.0.4, )"
+            },
+            "Microsoft.Data.Sqlite": {
+              "target": "Package",
+              "version": "[10.0.9, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

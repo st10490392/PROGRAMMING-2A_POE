@@ -1,4 +1,4 @@
-<Window xmlns="https://github.com/avaloniaui"
+ <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="CyberBotGUI.MainWindow"
         Width="900"
@@ -6,9 +6,9 @@
         Background="#0E1218"
         Title="Cybersecurity Awareness Bot">
 
-    <Grid RowDefinitions="Auto,*,Auto" Margin="18">
+    <Grid RowDefinitions="Auto,*" Margin="18">
 
-        <StackPanel Grid.Row="0" Spacing="6">
+        <StackPanel Grid.Row="0" Spacing="6" Margin="0,0,0,14">
             <TextBlock
                 Text="🛡️ CYBERSECURITY AWARENESS BOT"
                 Foreground="#7CFC00"
@@ -20,53 +20,151 @@
                 FontSize="14"/>
         </StackPanel>
 
-        <Border Grid.Row="1"
-                Background="#121820"
-                CornerRadius="14"
-                Padding="12"
-                Margin="0,14,0,14"
-                BorderBrush="#2A3A52"
-                BorderThickness="1">
+        <TabControl Grid.Row="1" Background="#121820" BorderBrush="#2A3A52" BorderThickness="1">
 
-            <TextBox
-                Name="ChatBox"
-                IsReadOnly="True"
-                AcceptsReturn="True"
-                TextWrapping="Wrap"
-                FontSize="15"
-                Background="#0B1016"
-                Foreground="#E8E8E8"
-                BorderBrush="#2A3A52"
-                BorderThickness="1"
-                ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+            <TabItem Header="Chat Bot">
+                <Grid RowDefinitions="*,Auto" Margin="12">
+                    <Border Grid.Row="0"
+                            Background="#121820"
+                            CornerRadius="14"
+                            Padding="12"
+                            BorderBrush="#2A3A52"
+                            BorderThickness="1">
+                        <TextBox
+                            Name="ChatBox"
+                            IsReadOnly="True"
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            FontSize="15"
+                            Background="#0B1016"
+                            Foreground="#E8E8E8"
+                            BorderBrush="#2A3A52"
+                            BorderThickness="1"
+                            ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                    </Border>
 
-        </Border>
+                    <Grid Grid.Row="1" ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                        <TextBox
+                            Grid.Column="0"
+                            Name="UserInput"
+                            Height="44"
+                            Background="#0B1016"
+                            Foreground="White"
+                            BorderBrush="#2A3A52"
+                            BorderThickness="1"
+                            FontSize="16"
+                            PlaceholderText="Type a message..."/>
+                        <Button
+                            Grid.Column="1"
+                            Content="Send"
+                            Width="120"
+                            Height="44"
+                            Background="#3E8EF7"
+                            Foreground="White"
+                            BorderBrush="#2C6DD4"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Click="SendButton_Click"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
 
-        <Grid Grid.Row="2" ColumnDefinitions="*,Auto">
-            <TextBox
-                Grid.Column="0"
-                Name="UserInput"
-                Height="44"
-                Background="#0B1016"
-                Foreground="White"
-                BorderBrush="#2A3A52"
-                BorderThickness="1"
-                FontSize="16"
-                Watermark="Type a message..."/>
+            <TabItem Header="Task Manager">
+                <StackPanel Margin="20" Spacing="12">
+                    <TextBlock Text="📋 Task Manager" Foreground="#7CFC00" FontSize="18" FontWeight="Bold"/>
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                        <TextBox
+                            Grid.Column="0"
+                            Name="TaskInput"
+                            Height="40"
+                            Background="#0B1016"
+                            Foreground="White"
+                            BorderBrush="#2A3A52"
+                            BorderThickness="1"
+                            FontSize="14"
+                            PlaceholderText="Enter task..."/>
+                        <Button
+                            Grid.Column="1"
+                            Content="Add Task"
+                            Width="120"
+                            Height="40"
+                            Background="#3E8EF7"
+                            Foreground="White"
+                            BorderBrush="#2C6DD4"
+                            BorderThickness="1"
+                            Click="AddTask_Click"/>
+                    </Grid>
+                    <Border Background="#121820" CornerRadius="8" BorderBrush="#2A3A52" BorderThickness="1" Padding="8">
+                        <ListBox Name="TaskList" Background="#0B1016" Foreground="#E8E8E8"/>
+                    </Border>
+                    <Button
+                        Content="Delete Selected Task"
+                        Height="36"
+                        Background="#D32F2F"
+                        Foreground="White"
+                        BorderBrush="#A02A2A"
+                        BorderThickness="1"
+                        Click="DeleteTask_Click"/>
+                </StackPanel>
+            </TabItem>
 
-            <Button
-                Grid.Column="1"
-                Content="Send"
-                Width="120"
-                Height="44"
-                Background="#3E8EF7"
-                Foreground="White"
-                BorderBrush="#2C6DD4"
-                BorderThickness="1"
-                CornerRadius="8"
-                Click="SendButton_Click"/>
-        </Grid>
+            <TabItem Header="Cyber Quiz">
+                <StackPanel Margin="20" Spacing="16">
+                    <TextBlock Text="🎯 Cybersecurity Quiz" Foreground="#7CFC00" FontSize="18" FontWeight="Bold"/>
+                    <Border Background="#121820" CornerRadius="8" BorderBrush="#2A3A52" BorderThickness="1" Padding="12">
+                        <TextBlock
+                            Name="QuizQuestion"
+                            Foreground="#E8E8E8"
+                            FontSize="16"
+                            TextWrapping="Wrap"
+                            Text="Click 'Start Quiz' to begin..."/>
+                    </Border>
+                    <TextBox
+                        Name="QuizAnswer"
+                        Height="44"
+                        Background="#0B1016"
+                        Foreground="White"
+                        BorderBrush="#2A3A52"
+                        BorderThickness="1"
+                        FontSize="14"
+                        PlaceholderText="Your answer..."/>
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                        <Button
+                            Grid.Column="0"
+                            Content="Submit Answer"
+                            Height="40"
+                            Background="#3E8EF7"
+                            Foreground="White"
+                            BorderBrush="#2C6DD4"
+                            BorderThickness="1"
+                            Click="CheckAnswer_Click"/>
+                        <Button
+                            Grid.Column="1"
+                            Content="Start Quiz"
+                            Width="120"
+                            Height="40"
+                            Background="#4CAF50"
+                            Foreground="White"
+                            BorderBrush="#3D8B40"
+                            BorderThickness="1"
+                            Click="StartQuiz_Click"/>
+                    </Grid>
+                    <Border Background="#121820" CornerRadius="8" BorderBrush="#2A3A52" BorderThickness="1" Padding="12">
+                        <TextBlock
+                            Name="QuizScore"
+                            Foreground="#7CFC00"
+                            FontSize="14"
+                            Text="Score: 0/0"/>
+                    </Border>
+                </StackPanel>
+            </TabItem>
 
+            <TabItem Header="Activity Log">
+                <Border Margin="12" Background="#121820" CornerRadius="8" BorderBrush="#2A3A52" BorderThickness="1" Padding="8">
+                    <ListBox Name="ActivityLog" Background="#0B1016" Foreground="#D3D3D3"/>
+                </Border>
+            </TabItem>
+
+        </TabControl>
     </Grid>
-
 </Window>

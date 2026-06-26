@@ -13,3 +13,8 @@
 /home/gingercodephantom/CyberBot/obj/Debug/net10.0/CyberBot.pdb
 /home/gingercodephantom/CyberBot/obj/Debug/net10.0/CyberBot.genruntimeconfig.cache
 /home/gingercodephantom/CyberBot/obj/Debug/net10.0/ref/CyberBot.dll
+/home/gingercodephantom/PROGRAMMING-2A_POE/obj/Debug/net10.0/CyberBot.csproj.AssemblyReference.cache
+/home/gingercodephantom/PROGRAMMING-2A_POE/obj/Debug/net10.0/Avalonia/Resources.Inputs.cache
+/home/gingercodephantom/PROGRAMMING-2A_POE/obj/Debug/net10.0/CyberBot.dll
+/home/gingercodephantom/PROGRAMMING-2A_POE/obj/Debug/net10.0/refint/CyberBot.dll
+/home/gingercodephantom/PROGRAMMING-2A_POE/obj/Debug/net10.0/CyberBot.pdb
