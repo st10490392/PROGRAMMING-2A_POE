@@ -1,0 +1,70 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CyberBotGUI.MainWindow"
+        Width="900"
+        Height="600"
+        Background="#0E1218"
+        Title="Cybersecurity Awareness Bot">
+  <Grid RowDefinitions="Auto,*" Margin="18">
+    <StackPanel Grid.Row="0" Spacing="6" Margin="0,0,0,14">
+      <TextBlock
+          Text="🛡️ CYBERSECURITY AWARENESS BOT"
+          Foreground="#7CFC00"
+          FontSize="28"
+          FontWeight="Bold"/>
+      <TextBlock
+          Text="Ask about passwords, phishing, privacy, malware, VPNs, scams, or social engineering."
+          Foreground="#D3D3D3"
+          FontSize="14"/>
+    </StackPanel>
+
+    <TabControl Grid.Row="1" Background="#121820" BorderBrush="#2A3A52" BorderThickness="1">
+      <TabItem Header="Chat Bot">
+        <Grid RowDefinitions="*,Auto" Margin="12">
+          <Border Grid.Row="0"
+                  Background="#121820"
+                  CornerRadius="14"
+                  Padding="12"
+                  BorderBrush="#2A3A52"
+                  BorderThickness="1">
+            <TextBox
+                Name="ChatBox"
+                IsReadOnly="True"
+                AcceptsReturn="True"
+                TextWrapping="Wrap"
+                FontSize="15"
+                Background="#0B1016"
+                Foreground="#E8E8E8"
+                BorderBrush="#2A3A52"
+                BorderThickness="1"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+          </Border>
+
+          <Grid Grid.Row="1" ColumnDefinitions="*,Auto" ColumnSpacing="8">
+            <TextBox
+                Grid.Column="0"
+                Name="UserInput"
+                Height="44"
+                Background="#0B1016"
+                Foreground="White"
+                BorderBrush="#2A3A52"
+                BorderThickness="1"
+                FontSize="16"
+                PlaceholderText="Type a message..."/>
+            <Button
+                Name="SendButton"
+                Grid.Column="1"
+                Content="Send"
+                Width="120"
+                Height="44"
+                Background="#3E8EF7"
+                Foreground="White"
+                BorderBrush="#2C6DD4"
+                BorderThickness="1"
+                CornerRadius="8"/>
+          </Grid>
+        </Grid>
+      </TabItem>
+    </TabControl>
+  </Grid>
+</Window>
