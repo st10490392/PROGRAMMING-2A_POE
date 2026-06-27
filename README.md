@@ -96,6 +96,31 @@ dotnet build CyberBotGUI.csproj
 dotnet run --project CyberBotGUI.csproj
 ```
 
+## Part 3 — GUI Enhancements and Submission Notes
+
+### Added enhancements
+
+- Improved tabbed UI layout for Chat Bot, Task Manager, Cyber Quiz, and Activity Log
+- Styled controls with a dark cybersecurity theme
+- Added a read-only chat history box and user input/message send flow
+- Included task management UI for adding and deleting tasks
+- Added quiz question/answer flow with score display
+- Added activity log area for future event tracking
+
+### Notes
+
+- The current project structure supports the full GUI application workflow.
+- The GUI app is launched from `CyberBot/CyberBotGUI`.
+- Further wiring of the chat service and final bug fixes are pending.
+
+### Run instructions
+
+```bash
+cd /home/gingercodephantom/PROGRAMMING-2A_POE/CyberBot/CyberBotGUI
+dotnet clean
+dotnet run
+```
+
 ## Technologies Used
 
 - .NET 8 / .NET 10

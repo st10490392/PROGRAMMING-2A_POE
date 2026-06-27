@@ -2,7 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="CyberBotGUI.MainWindow"
         Width="900"
-        Height="600"
+        Height="800"
         Background="#0E1218"
         Title="Cybersecurity Awareness Bot">
   <Grid RowDefinitions="Auto,*" Margin="18">
@@ -40,15 +40,14 @@
                 ScrollViewer.VerticalScrollBarVisibility="Auto"/>
           </Border>
 
-          <Grid Grid.Row="1" ColumnDefinitions="*,Auto" ColumnSpacing="8">
+          <Grid Grid.Row="1" ColumnDefinitions="*,Auto" ColumnSpacing="8" Margin="0,10,0,0">
             <TextBox
                 Grid.Column="0"
                 Name="UserInput"
                 Height="44"
+                Width="600"
                 Background="#0B1016"
                 Foreground="White"
-                BorderBrush="#2A3A52"
-                BorderThickness="1"
                 FontSize="16"
                 PlaceholderText="Type a message..."/>
             <Button
@@ -61,9 +60,47 @@
                 Foreground="White"
                 BorderBrush="#2C6DD4"
                 BorderThickness="1"
-                CornerRadius="8"/>
+                CornerRadius="8"
+                Click="SendButton_Click"/>
           </Grid>
         </Grid>
+      </TabItem>
+
+      <TabItem Header="Task Manager">
+        <StackPanel Margin="20" Spacing="12">
+          <TextBlock Text="📋 Task Manager" Foreground="#7CFC00" FontSize="18" FontWeight="Bold"/>
+          <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+            <TextBox Grid.Column="0" Name="TaskInput" Height="40" Background="#0B1016" Foreground="White" FontSize="14" PlaceholderText="Enter task..."/>
+            <Button Name="AddTaskButton" Grid.Column="1" Content="Add Task" Width="120" Height="40" Background="#3E8EF7" Foreground="White"/>
+          </Grid>
+          <Border Background="#121820" CornerRadius="8" BorderBrush="#2A3A52" BorderThickness="1" Padding="8">
+            <ListBox Name="TaskList" Background="#0B1016" Foreground="#E8E8E8"/>
+          </Border>
+          <Button Name="DeleteTaskButton" Content="Delete Selected Task" Height="36" Background="#D32F2F" Foreground="White"/>
+        </StackPanel>
+      </TabItem>
+
+      <TabItem Header="Cyber Quiz">
+        <StackPanel Margin="20" Spacing="16">
+          <TextBlock Text="🎯 Cybersecurity Quiz" Foreground="#7CFC00" FontSize="18" FontWeight="Bold"/>
+          <Border Background="#121820" CornerRadius="8" BorderBrush="#2A3A52" BorderThickness="1" Padding="12">
+            <TextBlock Name="QuizQuestion" Foreground="#E8E8E8" FontSize="16" Text="Click 'Start Quiz' to begin..."/>
+          </Border>
+          <TextBox Name="QuizAnswer" Height="44" Background="#0B1016" Foreground="White" FontSize="14" PlaceholderText="Your answer..."/>
+          <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+            <Button Name="SubmitAnswerButton" Grid.Column="0" Content="Submit Answer" Height="40" Background="#3E8EF7" Foreground="White"/>
+            <Button Name="StartQuizButton" Grid.Column="1" Content="Start Quiz" Width="120" Height="40" Background="#4CAF50" Foreground="White"/>
+          </Grid>
+          <Border Background="#121820" CornerRadius="8" BorderBrush="#2A3A52" BorderThickness="1" Padding="12">
+            <TextBlock Name="QuizScore" Foreground="#7CFC00" FontSize="14" Text="Score: 0/0"/>
+          </Border>
+        </StackPanel>
+      </TabItem>
+
+      <TabItem Header="Activity Log">
+        <Border Margin="12" Background="#121820" CornerRadius="8" BorderBrush="#2A3A52" BorderThickness="1" Padding="8">
+          <ListBox Name="ActivityLog" Background="#0B1016" Foreground="#D3D3D3"/>
+        </Border>
       </TabItem>
     </TabControl>
   </Grid>
