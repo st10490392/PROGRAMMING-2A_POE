@@ -5,6 +5,7 @@ namespace CyberBotGUI.Services;
 
 public class ChatbotService
 {
+    private readonly NlpService _nlp = new();
     private static readonly Random _random = new();
 
     private readonly Dictionary<string, string[]> _responses = new()
@@ -63,26 +64,26 @@ public class ChatbotService
     public string GetResponse(string input)
     {
         if (string.IsNullOrWhiteSpace(input))
-        {
             return "Please type a cybersecurity question.";
-        }
 
-        var normalized = input.Trim().ToLowerInvariant();
-
-        foreach (var topic in _responses)
-        {
-            if (normalized.Contains(topic.Key, StringComparison.OrdinalIgnoreCase))
-            {
-                var options = topic.Value;
-                return options[_random.Next(options.Length)];
-            }
-        }
-
-        if (normalized.Contains("hello", StringComparison.OrdinalIgnoreCase) ||
-            normalized.Contains("hi", StringComparison.OrdinalIgnoreCase) ||
-            normalized.Contains("hey", StringComparison.OrdinalIgnoreCase))
-        {
+        if (_nlp.IsGreeting(input))
             return "Hello! Ask me about cybersecurity and I will help.";
+
+        if (_nlp.TryDetectFeeling(input, out var feeling))
+        {
+            return feeling switch
+            {
+                "worried" => "It’s normal to feel worried. I can help you understand risks and stay safe.",
+                "confused" => "I can explain cybersecurity topics step by step. What would you like to know?",
+                "excited" => "Great! Let’s turn that energy into safer online habits.",
+                _ => "I’m here to help you with cybersecurity advice."
+            };
+        }
+
+        var topic = _nlp.DetectTopic(input);
+        if (topic != null && _responses.TryGetValue(topic, out var options))
+        {
+            return options[_random.Next(options.Length)];
         }
 
         return _defaultResponses[_random.Next(_defaultResponses.Length)];

@@ -1,185 +1,91 @@
- using System;
+using System;
 using System.Collections.Generic;
 
 namespace CyberBotGUI.Services;
 
 public class ChatbotService
 {
-    private Random random = new Random();
-
-    private string lastTopic = "";
-
-    private string favouriteTopic = "";
-
-    private Dictionary<string, List<string>> responses =
-        new Dictionary<string, List<string>>()
+    private readonly NlpService _nlp = new();
+    private readonly Dictionary<string, string[]> _responses = new()
     {
+        ["password"] = new[]
         {
-            "password",
-            new List<string>()
-            {
-                "Use strong unique passwords.",
-                "Avoid using personal details in passwords.",
-                "Use a password manager."
-            }
+            "Use a passphrase and a password manager to keep your passwords strong and unique.",
+            "Avoid reusing passwords across multiple accounts.",
+            "Enable multi-factor authentication whenever possible."
         },
-
+        ["phishing"] = new[]
         {
-            "phishing",
-            new List<string>()
-            {
-                "Never click suspicious links.",
-                "Check sender email addresses carefully.",
-                "Phishing scams often create urgency."
-            }
+            "Always verify the sender and never click links in suspicious emails.",
+            "Phishing messages often ask you to act quickly or share sensitive data.",
+            "If in doubt, go to the site directly instead of following email links."
         },
-
+        ["privacy"] = new[]
         {
-            "privacy",
-            new List<string>()
-            {
-                "Review privacy settings regularly.",
-                "Avoid oversharing online.",
-                "Enable two-factor authentication."
-            }
+            "Review app permissions and limit what you share on social media.",
+            "Use strong privacy settings on accounts and avoid oversharing.",
+            "Be careful on public Wi-Fi and avoid sending sensitive data there."
         },
-
+        ["malware"] = new[]
         {
-            "malware",
-            new List<string>()
-            {
-                "Keep your software updated to prevent malware infections.",
-                "Don't open attachments from unknown senders.",
-                "Use reputable antivirus tools and scan regularly."
-            }
+            "Install updates and use antivirus software to reduce malware risk.",
+            "Do not download attachments from unknown senders.",
+            "Malware often comes from untrusted websites and fake installers."
         },
-
+        ["vpn"] = new[]
         {
-            "vpn",
-            new List<string>()
-            {
-                "VPNs help protect your online privacy.",
-                "Avoid free VPNs you do not trust.",
-                "VPNs encrypt your internet traffic."
-            }
+            "A VPN encrypts your traffic on public networks.",
+            "Choose a reputable VPN provider with a clear privacy policy.",
+            "Remember a VPN does not make you immune to phishing."
         },
-
+        ["scam"] = new[]
         {
-            "scams",
-            new List<string>()
-            {
-                "If something sounds too good to be true, it probably is.",
-                "Verify requests before sharing sensitive information.",
-                "Scammers often create a false sense of urgency."
-            }
+            "If something sounds too good to be true, it probably is.",
+            "Never send money or credentials to people you don't know.",
+            "Scammers often pretend to be tech support or banks."
         },
-
+        ["social engineering"] = new[]
         {
-            "social engineering",
-            new List<string>()
-            {
-                "Social engineers use psychology to trick people.",
-                "Always verify the identity of anyone requesting access.",
-                "Be cautious when someone asks for confidential data."
-            }
+            "Social engineering tricks you into revealing sensitive information.",
+            "Always verify identity before acting on unusual requests.",
+            "Treat unsolicited calls, texts, or emails with suspicion."
         }
     };
 
+    private readonly string[] _defaultResponses = new[]
+    {
+        "I can help with passwords, phishing, privacy, malware, VPNs, scams, and social engineering.",
+        "Ask me a cybersecurity question and I will give you a helpful tip.",
+        "Stay safe online by using strong passwords and being cautious with links."
+    };
+
+    private static readonly Random _random = new();
+
     public string GetResponse(string input)
     {
-        input = input.ToLower();
-
         if (string.IsNullOrWhiteSpace(input))
-        {
-            return "Please enter a message.";
-        }
+            return "Please type a cybersecurity question.";
 
-        // Sentiment detection
-        if (input.Contains("worried"))
-        {
-            return "It's understandable to feel worried. Scammers can be convincing.";
-        }
+        if (_nlp.IsGreeting(input))
+            return "Hello! Ask me about cybersecurity and I will help.";
 
-        if (input.Contains("frustrated"))
+        if (_nlp.IsFeeling(input, out var feeling))
         {
-            return "Cybersecurity can feel overwhelming, but small steps help.";
-        }
-
-        if (input.Contains("curious"))
-        {
-            return "That's great! Learning cybersecurity is important.";
-        }
-
-        if (input.Contains("scared"))
-        {
-            return "I understand feeling scared — focus on one small security habit at a time.";
-        }
-
-        if (input.Contains("confused"))
-        {
-            return "If you're confused, take a deep breath and ask for a simpler explanation.";
-        }
-
-        if (input.Contains("excited"))
-        {
-            return "That's awesome! Cybersecurity is an exciting skill to learn.";
-        }
-
-        // Memory
-        if (input.Contains("i like"))
-        {
-            foreach (var keyword in responses.Keys)
+            return feeling switch
             {
-                if (input.Contains(keyword))
-                {
-                    favouriteTopic = keyword;
-                    return $"Great! I'll remember that you're interested in {keyword}.";
-                }
-            }
+                "worried" => "It's normal to feel worried. I can help you understand risks and stay safe.",
+                "confused" => "I can explain cybersecurity topics step by step. What would you like to know?",
+                "excited" => "Great! Let's turn that energy into safer online habits.",
+                _ => "I’m here to help you with cybersecurity advice."
+            };
         }
 
-        if (input.Contains("i like privacy"))
+        var topic = _nlp.DetectTopic(input);
+        if (topic != null && _responses.TryGetValue(topic, out var list))
         {
-            favouriteTopic = "privacy";
-            return "Great! I'll remember that you're interested in privacy.";
+            return list[_random.Next(list.Length)];
         }
 
-        // Conversation flow
-        if (input.Contains("tell me more") ||
-            input.Contains("another tip"))
-        {
-            if (lastTopic != "")
-            {
-                return GetRandomResponse(lastTopic);
-            }
-
-            return "Tell me which topic you'd like to hear more about first.";
-        }
-
-        // Keyword recognition
-        foreach (var keyword in responses.Keys)
-        {
-            if (input.Contains(keyword))
-            {
-                lastTopic = keyword;
-                return GetRandomResponse(keyword);
-            }
-        }
-
-        if (favouriteTopic != "")
-        {
-            return $"Since you're interested in {favouriteTopic}, remember to stay safe online.";
-        }
-
-        return "I didn't quite understand that. Could you rephrase?";
-    }
-
-    private string GetRandomResponse(string topic)
-    {
-        var list = responses[topic];
-
-        int index = random.Next(list.Count);
-
-        return list[index];
+        return _defaultResponses[_random.Next(_defaultResponses.Length)];
     }
 }
