@@ -12,9 +12,25 @@ public partial class MainWindow : Window
     private readonly QuizService _quiz = new();
     private QuizQuestion? _currentQuestion;
 
+    private TextBox? _chatBox;
+    private TextBox? _userInput;
+    private TextBox? _quizAnswer;
+    private TextBlock? _quizQuestion;
+    private TextBlock? _quizScore;
+
     public MainWindow()
     {
         InitializeComponent();
+        Opened += MainWindow_Opened;
+    }
+
+    private void MainWindow_Opened(object? sender, EventArgs e)
+    {
+        _chatBox = this.FindControl<TextBox>("ChatBox");
+        _userInput = this.FindControl<TextBox>("UserInput");
+        _quizAnswer = this.FindControl<TextBox>("QuizAnswer");
+        _quizQuestion = this.FindControl<TextBlock>("QuizQuestion");
+        _quizScore = this.FindControl<TextBlock>("QuizScore");
 
         var sendButton = this.FindControl<Button>("SendButton");
         if (sendButton != null)
@@ -28,30 +44,22 @@ public partial class MainWindow : Window
         if (submitAnswerButton != null)
             submitAnswerButton.Click += CheckAnswer_Click;
 
-        Opened += MainWindow_Opened;
-    }
-
-    private void MainWindow_Opened(object? sender, EventArgs e)
-    {
-        var chatBox = this.FindControl<TextBox>("ChatBox");
-        if (chatBox != null)
-            chatBox.Text = "CyberBot: Hello! Type a question and press Send.\n\n";
+        if (_chatBox != null)
+            _chatBox.Text = "CyberBot: Hello! Type a question and press Send.\n\n";
     }
 
     private void SendButton_Click(object? sender, RoutedEventArgs e)
     {
-        var userInput = this.FindControl<TextBox>("UserInput");
-        var chatBox = this.FindControl<TextBox>("ChatBox");
-        if (userInput == null || chatBox == null)
+        if (_userInput == null || _chatBox == null)
             return;
 
-        var text = userInput.Text?.Trim();
+        var text = _userInput.Text?.Trim();
         if (string.IsNullOrEmpty(text))
             return;
 
-        chatBox.Text += $"You: {text}\n";
-        chatBox.Text += $"CyberBot: {_bot.GetResponse(text)}\n\n";
-        userInput.Text = string.Empty;
+        _chatBox.Text += $"You: {text}\n";
+        _chatBox.Text += $"CyberBot: {_bot.GetResponse(text)}\n\n";
+        _userInput.Text = string.Empty;
     }
 
     private void StartQuiz_Click(object? sender, RoutedEventArgs e)
@@ -59,48 +67,33 @@ public partial class MainWindow : Window
         _quiz.ResetQuiz();
         _currentQuestion = _quiz.GetNextQuestion();
 
-        var questionBlock = this.FindControl<TextBlock>("QuizQuestion");
-        var scoreBlock = this.FindControl<TextBlock>("QuizScore");
-        var answerBox = this.FindControl<TextBox>("QuizAnswer");
-        if (questionBlock == null || scoreBlock == null || answerBox == null)
-            return;
-
-        if (_currentQuestion != null)
+        if (_quizQuestion != null && _quizScore != null && _quizAnswer != null)
         {
-            questionBlock.Text = _currentQuestion.Question;
-            scoreBlock.Text = _quiz.GetScoreText();
-            answerBox.Text = string.Empty;
-        }
-        else
-        {
-            questionBlock.Text = "No quiz questions available.";
-            scoreBlock.Text = _quiz.GetScoreText();
+            if (_currentQuestion != null)
+            {
+                _quizQuestion.Text = _currentQuestion.Question;
+                _quizScore.Text = _quiz.GetScoreText();
+                _quizAnswer.Text = string.Empty;
+            }
         }
     }
 
     private void CheckAnswer_Click(object? sender, RoutedEventArgs e)
     {
-        if (_currentQuestion == null)
+        if (_currentQuestion == null || _quizAnswer == null || _quizQuestion == null || _quizScore == null || _chatBox == null)
             return;
 
-        var answerBox = this.FindControl<TextBox>("QuizAnswer");
-        var questionBlock = this.FindControl<TextBlock>("QuizQuestion");
-        var scoreBlock = this.FindControl<TextBlock>("QuizScore");
-        var chatBox = this.FindControl<TextBox>("ChatBox");
-        if (answerBox == null || questionBlock == null || scoreBlock == null || chatBox == null)
-            return;
-
-        var userAnswer = answerBox.Text?.Trim() ?? string.Empty;
+        var userAnswer = _quizAnswer.Text?.Trim() ?? string.Empty;
         var correct = _quiz.CheckAnswer(_currentQuestion, userAnswer);
 
-        chatBox.Text += $"Quiz: {_currentQuestion.Question}\n";
-        chatBox.Text += correct
+        _chatBox.Text += $"Quiz: {_currentQuestion.Question}\n";
+        _chatBox.Text += correct
             ? "CyberBot: Correct! Well done.\n\n"
             : $"CyberBot: Not quite. The answer is: {_currentQuestion.Answer}\n\n";
 
         _currentQuestion = _quiz.GetNextQuestion();
-        questionBlock.Text = _currentQuestion?.Question ?? "Quiz complete! Click Start Quiz to play again.";
-        scoreBlock.Text = _quiz.GetScoreText();
-        answerBox.Text = string.Empty;
+        _quizQuestion.Text = _currentQuestion?.Question ?? "Quiz complete! Click Start Quiz to play again.";
+        _quizScore.Text = _quiz.GetScoreText();
+        _quizAnswer.Text = string.Empty;
     }
 }
