@@ -30,7 +30,6 @@ public class NlpService
             return null;
 
         var normalized = input.Trim().ToLowerInvariant();
-
         foreach (var topic in _topicKeywords)
         {
             if (topic.Value.Any(keyword => normalized.Contains(keyword, StringComparison.OrdinalIgnoreCase)))

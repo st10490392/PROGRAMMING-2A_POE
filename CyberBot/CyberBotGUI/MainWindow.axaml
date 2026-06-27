@@ -40,19 +40,21 @@
                 ScrollViewer.VerticalScrollBarVisibility="Auto"/>
           </Border>
 
-          <Grid Grid.Row="1" ColumnDefinitions="*,Auto" ColumnSpacing="8" Margin="0,10,0,0">
+          <Grid Grid.Row="1" ColumnDefinitions="*,Auto" Margin="0,10,0,0">
             <TextBox
                 Grid.Column="0"
                 Name="UserInput"
                 Height="44"
-                Width="600"
                 Background="#0B1016"
                 Foreground="White"
+                BorderBrush="#2A3A52"
+                BorderThickness="1"
                 FontSize="16"
-                PlaceholderText="Type a message..."/>
+                Margin="0,0,8,0"
+                Watermark="Type a message..."/>
             <Button
-                Name="SendButton"
                 Grid.Column="1"
+                Name="SendButton"
                 Content="Send"
                 Width="120"
                 Height="44"
@@ -60,8 +62,7 @@
                 Foreground="White"
                 BorderBrush="#2C6DD4"
                 BorderThickness="1"
-                CornerRadius="8"
-                Click="SendButton_Click"/>
+                CornerRadius="8"/>
           </Grid>
         </Grid>
       </TabItem>
@@ -69,14 +70,39 @@
       <TabItem Header="Task Manager">
         <StackPanel Margin="20" Spacing="12">
           <TextBlock Text="📋 Task Manager" Foreground="#7CFC00" FontSize="18" FontWeight="Bold"/>
-          <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
-            <TextBox Grid.Column="0" Name="TaskInput" Height="40" Background="#0B1016" Foreground="White" FontSize="14" PlaceholderText="Enter task..."/>
-            <Button Name="AddTaskButton" Grid.Column="1" Content="Add Task" Width="120" Height="40" Background="#3E8EF7" Foreground="White"/>
+          <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,0">
+            <TextBox
+                Grid.Column="0"
+                Name="TaskInput"
+                Height="40"
+                Background="#0B1016"
+                Foreground="White"
+                BorderBrush="#2A3A52"
+                BorderThickness="1"
+                FontSize="14"
+                Margin="0,0,8,0"
+                Watermark="Enter task..."/>
+            <Button
+                Name="AddTaskButton"
+                Grid.Column="1"
+                Content="Add Task"
+                Width="120"
+                Height="40"
+                Background="#3E8EF7"
+                Foreground="White"/>
           </Grid>
           <Border Background="#121820" CornerRadius="8" BorderBrush="#2A3A52" BorderThickness="1" Padding="8">
-            <ListBox Name="TaskList" Background="#0B1016" Foreground="#E8E8E8"/>
+            <ListBox
+                Name="TaskList"
+                Background="#0B1016"
+                Foreground="#E8E8E8"/>
           </Border>
-          <Button Name="DeleteTaskButton" Content="Delete Selected Task" Height="36" Background="#D32F2F" Foreground="White"/>
+          <Button
+              Name="DeleteTaskButton"
+              Content="Delete Selected Task"
+              Height="36"
+              Background="#D32F2F"
+              Foreground="White"/>
         </StackPanel>
       </TabItem>
 
@@ -84,22 +110,59 @@
         <StackPanel Margin="20" Spacing="16">
           <TextBlock Text="🎯 Cybersecurity Quiz" Foreground="#7CFC00" FontSize="18" FontWeight="Bold"/>
           <Border Background="#121820" CornerRadius="8" BorderBrush="#2A3A52" BorderThickness="1" Padding="12">
-            <TextBlock Name="QuizQuestion" Foreground="#E8E8E8" FontSize="16" Text="Click 'Start Quiz' to begin..."/>
+            <TextBlock
+                Name="QuizQuestion"
+                Foreground="#E8E8E8"
+                FontSize="16"
+                Text="Click 'Start Quiz' to begin..."/>
           </Border>
-          <TextBox Name="QuizAnswer" Height="44" Background="#0B1016" Foreground="White" FontSize="14" PlaceholderText="Your answer..."/>
-          <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
-            <Button Name="SubmitAnswerButton" Grid.Column="0" Content="Submit Answer" Height="40" Background="#3E8EF7" Foreground="White"/>
-            <Button Name="StartQuizButton" Grid.Column="1" Content="Start Quiz" Width="120" Height="40" Background="#4CAF50" Foreground="White"/>
+          <TextBox
+              Name="QuizAnswer"
+              Height="44"
+              Background="#0B1016"
+              Foreground="White"
+              FontSize="14"/>
+          <Grid
+              ColumnDefinitions="*,Auto"
+             >
+            <Button
+                Name="SubmitAnswerButton"
+                Grid.Column="0"
+                Content="Submit Answer"
+                Height="40"
+                Background="#3E8EF7"
+                Foreground="White"
+                Margin="0,0,8,0"/>
+            <Button
+                Name="StartQuizButton"
+                Grid.Column="1"
+                Content="Start Quiz"
+                Width="120"
+                Height="40"
+                Background="#4CAF50"
+                Foreground="White"/>
           </Grid>
-          <Border Background="#121820" CornerRadius="8" BorderBrush="#2A3A52" BorderThickness="1" Padding="12">
-            <TextBlock Name="QuizScore" Foreground="#7CFC00" FontSize="14" Text="Score: 0/0"/>
+          <Border
+              Background="#121820"
+              CornerRadius="8"
+              BorderBrush="#2A3A52"
+              BorderThickness="1"
+              Padding="12">
+            <TextBlock
+                Name="QuizScore"
+                Foreground="#7CFC00"
+                FontSize="14"
+                Text="Score: 0/0"/>
           </Border>
         </StackPanel>
       </TabItem>
 
       <TabItem Header="Activity Log">
         <Border Margin="12" Background="#121820" CornerRadius="8" BorderBrush="#2A3A52" BorderThickness="1" Padding="8">
-          <ListBox Name="ActivityLog" Background="#0B1016" Foreground="#D3D3D3"/>
+          <ListBox
+              Name="ActivityLog"
+              Background="#0B1016"
+              Foreground="#D3D3D3"/>
         </Border>
       </TabItem>
     </TabControl>

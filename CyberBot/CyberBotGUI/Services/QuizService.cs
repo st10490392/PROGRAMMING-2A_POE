@@ -75,7 +75,7 @@ public class QuizService
 
     private void SeedQuestions()
     {
-        var seedQuestions = new[]
+        var seed = new[]
         {
             new QuizQuestion
             {
@@ -102,7 +102,7 @@ public class QuizService
         using var connection = new SqliteConnection($"Data Source={_dbPath}");
         connection.Open();
 
-        foreach (var question in seedQuestions)
+        foreach (var question in seed)
         {
             using var command = connection.CreateCommand();
             command.CommandText = "INSERT INTO QuizQuestions (Question, Answer) VALUES ($question, $answer);";
@@ -148,10 +148,7 @@ public class QuizService
         command.ExecuteNonQuery();
     }
 
-    public string GetScoreText()
-    {
-        return $"Score: {_correctCount}/{_attemptCount}";
-    }
+    public string GetScoreText() => $"Score: {_correctCount}/{_attemptCount}";
 
     public void ResetQuiz()
     {
