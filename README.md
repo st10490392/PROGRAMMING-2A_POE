@@ -136,3 +136,9 @@ Part3 commit marker 3 - 2026-06-27T21:14:35+02:00
 Part3 commit marker 4 - 2026-06-27T21:14:35+02:00
 
 Part3 commit marker 5 - 2026-06-27T21:14:35+02:00
+
+---
+
+## Project status update — 13 October 2026
+
+Academic cybersecurity chatbot project with console and Avalonia GUI implementations. Current CodePhantom backend, mobile and quant work happens in separate repositories; this README does not imply a new chatbot deployment.
